@@ -44,11 +44,8 @@ def home():
                         word_slice = word_slice[word_slice[str(field.name[-1])] != letter]
                         word_slice = word_slice[word_slice['word'].str.contains(letter)]
         word_slice = word_slice.sort_values('word')
-        print(type(word_slice['word'].tolist()))
         return render_template('index.html', form=form, words=word_slice['word'].tolist())
     return render_template('index.html', form=form)
-
-
 
 
 if __name__ == '__main__':
