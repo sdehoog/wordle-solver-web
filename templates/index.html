@@ -1,0 +1,24 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Wordle Solver{% endblock %}
+
+{% block content %}
+<div class="content">
+<h1 class="heading">This site takes all of your letters and gives back the remaining possible words.</h1>
+<form class="form" method="POST" action="">
+    {{ form.csrf_token }}
+    <div>Green: {{ form.green0(size=1) }} {{ form.green1(size=1) }} {{ form.green2(size=1) }} {{ form.green3(size=1) }} {{ form.green4(size=1) }}</div>
+    <div>Yellow: {{ form.yellow0(size=1) }} {{ form.yellow1(size=1) }} {{ form.yellow2(size=1) }} {{ form.yellow3(size=1) }} {{ form.yellow4(size=1) }}</div>
+    <div>Black: {{ form.black() }}</div>
+    <div class="btn">{{ form.submit }}</div>
+</form>
+    <a class="btn" href="{{ url_for('home') }}">Reset</a>
+    <br>
+    {% if words %}
+        {% for word in words %}
+            <p>{{ word }}</p>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
