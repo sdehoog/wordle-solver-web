@@ -1,24 +1,59 @@
-{% extends 'bootstrap/base.html' %}
-{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form, render_field %}
 
 {% block title %}Wordle Solver{% endblock %}
 
 {% block content %}
 <div class="content container text-center">
-<h1 class="heading">This site takes all of your letters and gives back the remaining possible words.</h1>
-<form class="form" method="POST" action="">
-    {{ form.csrf_token }}
-    <div>Green: {{ form.green0(size=1) }} {{ form.green1(size=1) }} {{ form.green2(size=1) }} {{ form.green3(size=1) }} {{ form.green4(size=1) }}</div>
-    <div>Yellow: {{ form.yellow0(size=1) }} {{ form.yellow1(size=1) }} {{ form.yellow2(size=1) }} {{ form.yellow3(size=1) }} {{ form.yellow4(size=1) }}</div>
-    <div>Black: {{ form.black() }}</div>
-    <div class="btn">{{ form.submit }}</div>
-</form>
-    <a class="btn" href="{{ url_for('home') }}">Reset</a>
+    <h1 class="heading">This site takes all of your letters and gives back the remaining possible words.</h1>
+    <h5 class="text-success">Single letter in each green box.</h5>
+    <h5 class="text-warning">Multiple letters in each yellow box.</h5>
+    <form class="form" method="POST" action="">
+        {{ form.csrf_token }}
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="text-success">Green:</h3>
+            </div>
+            <div class="col no-label">
+                <div class="row">
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.green0) }}</div>
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.green1) }}</div>
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.green2) }}</div>
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.green3) }}</div>
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.green4) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <h3 class="text-warning">Yellow:</h3>
+            </div>
+            <div class="col no-label">
+                <div class="row">
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.yellow0) }}</div>
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.yellow1) }}</div>
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.yellow2) }}</div>
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.yellow3) }}</div>
+                    <div class="col col-sm col-md-1 mx-1 p-0">{{ render_field(form.yellow4) }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <h3>Black:</h3>
+            </div>
+            <div class="col col-md-3 no-label mx-1 p-0">
+                {{ render_field(form.black) }}
+            </div>
+        </div>
+        {{ render_field(form.submit, class='mb-2') }}
+    </form>
+    <a class="btn btn-secondary" href="{{ url_for('home') }}">Reset</a>
     <br>
     {% if words %}
-        {% for word in words %}
-            <p>{{ word }}</p>
-        {% endfor %}
+    {% for word in words %}
+    <p>{{ word }}</p>
+    {% endfor %}
     {% endif %}
 </div>
 {% endblock %}

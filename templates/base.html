@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% block styles %}
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+            <style>
+                .no-label .form-label {
+                    display:none;
+                    }
+            </style>
+        {% endblock %}
+
+        <title>{% block title %}Your page title{% endblock %}</title>
+        {% endblock %}
+    </head>
+    <body>
+        <!-- Your page content -->
+        {% block content %}{% endblock %}
+
+        {% block scripts %}
+            <!-- Optional JavaScript -->
+            {{ bootstrap.load_js() }}
+        {% endblock %}
+    </body>
+</html>

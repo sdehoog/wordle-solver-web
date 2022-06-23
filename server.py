@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
@@ -7,7 +7,7 @@ import pandas as pd
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'this_just_needs_to_exist'
-Bootstrap(app)
+Bootstrap5(app)
 
 word_df = pd.read_csv('word_list.csv')
 
@@ -49,4 +49,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
