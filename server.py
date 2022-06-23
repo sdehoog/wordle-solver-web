@@ -36,13 +36,13 @@ def home():
             if field.data:
                 if field.name == 'black':
                     for letter in field.data:
-                        word_slice = word_slice[~word_slice['word'].str.contains(letter)]
+                        word_slice = word_slice[~word_slice['word'].str.contains(letter.lower())]
                 elif field.name[:-1] == 'green':
-                    word_slice = word_slice[word_slice[str(field.name[-1])] == field.data]
+                    word_slice = word_slice[word_slice[str(field.name[-1])] == field.data.lower()]
                 elif field.name[:-1] == 'yellow':
                     for letter in field.data:
-                        word_slice = word_slice[word_slice[str(field.name[-1])] != letter]
-                        word_slice = word_slice[word_slice['word'].str.contains(letter)]
+                        word_slice = word_slice[word_slice[str(field.name[-1])] != letter.lower()]
+                        word_slice = word_slice[word_slice['word'].str.contains(letter.lower())]
         word_slice = word_slice.sort_values('word')
         return render_template('index.html', form=form, words=word_slice['word'].tolist())
     return render_template('index.html', form=form)
