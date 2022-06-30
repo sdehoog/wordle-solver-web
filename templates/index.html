@@ -46,9 +46,9 @@
                 {{ render_field(form.black, autocomplete='off') }}
             </div>
         </div>
-        {{ render_field(form.submit, class='mb-2') }}
+        {{ render_field(form.submit, class='mb-2 btn-success') }}
     </form>
-    <a class="btn btn-secondary" href="{{ url_for('home') }}">Reset</a>
+    <a class="btn btn-secondary mb-2" href="{{ url_for('home') }}">Reset</a>
     <br>
     {% if words %}
     {% for word in words %}
